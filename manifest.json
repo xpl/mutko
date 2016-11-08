@@ -9,10 +9,10 @@
 
     "content_scripts": [{
         "matches": ["<all_urls>"],
-        "js":      ["hot-reload.js", "mutko.js"]
+        "js":      ["mutko.js"]
     }],
 
     "background": {
-    	"scripts": ["hot-reload-background.js", "background.js"]
+    	"scripts": ["hot-reload.js", "background.js"]
   	}
 }
