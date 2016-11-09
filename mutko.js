@@ -12,6 +12,10 @@ const updateMenu = data => {
 	chrome.runtime.sendMessage (Object.assign ({ request: 'updateContextMenu' }, data))
 }
 
+const sleep = ms => {
+    for (let t = Date.now (); (Date.now () - t) < ms;) {}
+}
+
 document.addEventListener ('contextmenu', e => {
 
 	const sel = window.getSelection ().toString ().trim ()
@@ -28,6 +32,7 @@ document.addEventListener ('contextmenu', e => {
 
             if (translations.length) {
                 updateMenu ({
+
                 	text: translations[0],
                 	link: 'https://www.lingvolive.com/ru-ru/translate/en-ru/' + sel })
             } else {
@@ -42,6 +47,6 @@ document.addEventListener ('contextmenu', e => {
     	updateMenu ()
     }
 
-    fetchSync (url) // HACK: delays context menu, so the 'updateContextMenu' message gets processed first
+    sleep (50) // HACK: delays context menu, so the 'updateContextMenu' message gets processed first
 })
 
